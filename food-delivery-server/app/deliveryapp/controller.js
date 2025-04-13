@@ -16,14 +16,15 @@ export function product(req, res) {
 }
 
 export function adminStoreProduct(req, res) {
-    const { name, description, brand, price, Image } = req.body;
-    if (name & description & brand & price) {
-        const image = Buffer.from(Image.split(',')[1], 'base64');
-        storeProduct(name, description, brand, price, image);
-        res.json({ msg: 'Product stored successfully', value: true })
-    } else {
+    const { name, brand, description, price, Image } = req.body;
+    console.log(description)
+    if (!name & !brand & !description & !price & !Image) {
         res.json({ msg: 'please provide complete credentials', value: false })
     }
+
+    const image = Buffer.from(Image.split(',')[1], 'base64');
+    storeProduct(name, description, brand, price, image);
+    res.json({ msg: 'Product stored successfully', value: true })
 }
 
 //remain to get name from cookie
