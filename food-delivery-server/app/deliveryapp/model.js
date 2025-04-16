@@ -63,6 +63,14 @@ export async function storeAdmin(name, email, password, phone_no) {
     return await Admin.create({ name, email, password, phone_no })
 }
 
+export async function getAllUsers() {
+    return await User.find()
+}
+
+export async function getAllAdmin() {
+    return await Admin.find()
+}
+
 export async function getCart(username) {
     return await Cart.find({ user_name: username })
 }
